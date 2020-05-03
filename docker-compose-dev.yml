@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  guard:
+    image: glacion/guard
+    restart: unless-stopped
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 35729:35729
+    tty: true
+    stdin_open: true
+
+  greenlight:
+    image: glacion/greenlight:v2-dev
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 80:80
+
+  db:
+    image: postgres:9.5
+    restart: unless-stopped
+    ports:
+      - 5432
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_DB=greenlight
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+
+volumes:
+  dbdata:

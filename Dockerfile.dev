@@ -1,0 +1,15 @@
+FROM ruby:2.5.1-alpine
+
+WORKDIR /usr/src/app
+EXPOSE 80
+ENV RAILS_ENV development
+
+RUN apk update && \
+  apk add --no-cache \
+  postgresql-dev yaml-dev zlib-dev nodejs yarn \
+  build-base curl-dev git tzdata bash
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+CMD ["bin/start"]

@@ -79,9 +79,6 @@ group :production do
   gem 'pg', '~> 0.18'
   gem 'sequel'
 
-  # For a better logging library in production
-  gem "lograge"
-
   # Use  for the cache store in production
   gem 'redis'
   gem 'hiredis'
@@ -115,8 +112,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'guard-livereload', '~> 2.5', require: false
+  # For a better logging library in production
 end
+
+gem "lograge"
 
 gem 'remote_syslog_logger'
 
