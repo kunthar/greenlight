@@ -2,7 +2,8 @@ version: "3"
 
 services:
   guard:
-    image: glacion/guard
+    image: caas/greenlight:v2-dev
+    env_file: .env
     restart: unless-stopped
     volumes:
       - ./:/usr/src/app
@@ -10,9 +11,10 @@ services:
       - 35729:35729
     tty: true
     stdin_open: true
+    entrypoint: bundle exec guard
 
   greenlight:
-    image: glacion/greenlight:v2-dev
+    image: caas/greenlight:v2-dev
     env_file: .env
     restart: unless-stopped
     volumes:
