@@ -35,3 +35,26 @@ We invite you to build upon Greenlight and help make it better. See [Contributin
 
 We invite your feedback, questions, and suggests about Greenlight too. Please post them to the [developer mailing list](https://groups.google.com/forum/#!forum/bigbluebutton-dev).
 
+## Development Setup
+
+* Build development container:
+  ```
+  docker build -t caas/greenlight:v2-dev -f Dockerfile.dev .
+  ```
+
+* Install LiveReload extension to your browser(s)  
+  **NOTE:** If you're using a seperate development server other than `localhost` you need to forward the required port to your development device, otherwise the LiveReload extension won't work.  
+  ```
+  ssh $DEVELOPMENT_HOST -L 35729:localhost:35729 -Nvv
+  ```
+
+* Start development server. (Change .services.greenlight.ports[0] if your port 80 is occupied.) 
+  ```
+  docker-compose -f docker-compose-dev.yml up
+  ```
+
+* Accessing guard console  
+  ```
+  docker attach greenlight_guard_1
+  ```  
+  Pressing enter or entering `rspec` runs rspec tests.
