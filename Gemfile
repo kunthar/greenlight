@@ -73,12 +73,10 @@ gem 'redcarpet'
 
 # For limiting access based on user roles
 gem 'cancancan', '~> 2.0'
+gem 'pg', '~> 0.18'
+gem 'sequel'
 
 group :production do
-  # Use a postgres database in production.
-  gem 'pg', '~> 0.18'
-  gem 'sequel'
-
   # Use  for the cache store in production
   gem 'redis'
   gem 'hiredis'
@@ -92,9 +90,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Environment configuration.
   gem 'dotenv-rails'
-end
-
-group :test do
   # Include Rspec and other testing utilities.
   gem 'rspec-rails', '~> 3.7'
   gem 'action-cable-testing'
@@ -112,7 +107,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # For a better logging library in production
+  gem 'guard-livereload', '~>2.5'
+  gem 'guard-rspec', '~> 4.7'
 end
 
 gem "lograge"
